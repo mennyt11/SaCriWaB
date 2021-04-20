@@ -1,5 +1,5 @@
 module frame_window(
-		input FWCLK, WDRST,
+		input FWCLK, WDRST,WDSRVC,
 		input [7:0] FWLEN,
 		output reg FW_OVR);
 
@@ -12,9 +12,14 @@ end
 
 always @ (posedge FWCLK)
 begin
-	if(q==FWLEN+1)
+	if(q==FWLEN)
 		begin
 		FW_OVR<=1;
+		q<=0;
+		end
+
+	else if(WDSRVC==1)
+		begin
 		q<=0;
 		end
 	
