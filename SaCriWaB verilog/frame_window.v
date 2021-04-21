@@ -22,12 +22,12 @@
 module frame_window(
 		input CLK, WDRST,WDSRVC,
 		input [7:0] FWLEN,
-		output reg FW_OVR);
+		output reg FWOVR);
 
 reg [7:0] q;
 		 
 initial begin 
-FW_OVR=0;
+FWOVR=0;
 q=0;
 end
 
@@ -44,7 +44,7 @@ always @ (posedge CLK)
 begin
 	if(q==FWLEN)
 		begin
-		FW_OVR<=1;
+		FWOVR<=1;
 		q<=0;
 		end
 
@@ -56,7 +56,7 @@ begin
 	else if(WDRST==1)
 		begin
 		q<=0;
-		FW_OVR<=0;
+		FWOVR<=0;
 		end
 	else
 		q<=q+1;
