@@ -68,9 +68,7 @@ module configuration_register(
         2'b00: FWLEN_reg<= DBUS;
         2'b01: SWLEN_reg<= DBUS;
         2'b10: SERVICE_reg<= DBUS;
-        2'b11: begin
-               RST_LMT_reg<=DBUS;
-               end
+        2'b11: RST_LMT_reg<=DBUS;
         endcase
         end
         

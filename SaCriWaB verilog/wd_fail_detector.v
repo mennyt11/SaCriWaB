@@ -61,7 +61,7 @@ module wd_fail_detector(
         end
     end
     
-    always @(negedge WDSRVC)
+    always @(negedge SWSTAT)
     begin
         if(SRVC_LMT==0)
         begin
