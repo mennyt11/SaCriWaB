@@ -34,7 +34,7 @@ module configuration_register(
     output [2:0] FLSTAT
     );
     
-    reg [7:0] FWLEN_reg,SWLEN_reg,FLSTAT_reg,RST_LMT_reg;
+    reg [7:0] FWLEN_reg,SWLEN_reg,RST_LMT_reg;
     reg [7:0] SERVICE_reg; // [7:4] unused,[3] INIT,[2] WDSRVC,[1:0] FLSTAT
     
     assign FWLEN = FWLEN_reg;
