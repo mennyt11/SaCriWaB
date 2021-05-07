@@ -24,16 +24,21 @@ module pattern_comparator(
  input [7:0] DBUS,
  input CLK,
  input RST,
- output reg WREN);
+ output reg WREN
+ );
 
- parameter IDLE = 2'b00, STAT1 = 2'b01, STAT2 = 2'b10;
- integer q;
+ parameter IDLE = 2'b00, STAT1 = 2'b01, STAT2 = 2'b10,count=8'h04;
+ reg[7:0] q1,q2;
  reg [1:0] PS, NS;
- reg start;
+ reg start1,start2;
 
  initial  
  begin
     PS = IDLE;
+    q1=0;
+    q2=0;
+    start1=0;
+    start2=0;
  end
 
  always@ (posedge CLK or posedge RST)
@@ -50,53 +55,74 @@ module pattern_comparator(
    IDLE: begin
             if( DBUS==8'hAA)
             begin
-                NS= STAT1;
-                WREN = 0;
+                NS<= STAT1;
+                WREN <= 0;
+                start1<=1;
             end
                
             else 
             begin
-                NS = IDLE;
-                WREN = 0;
+                NS <= IDLE;
+                WREN <= 0;
             end
          end
 
    STAT1: begin
             if(DBUS == 8'h55)
             begin
-                NS = STAT2;
-                WREN = 0;
-            end
-            
-            else
-            begin 
-                NS = IDLE;
-                WREN = 0;
+                start1<=0;
+                q1<=0;
+                NS <= STAT2;
+                WREN <= 1;
             end
           end 
 
    STAT2: begin
-            start = 1;
+            start2 <= 1;
           end
 
-   default: NS = IDLE;
+   default: NS <= IDLE;
    endcase
  end
+ 
+always@(posedge CLK)
+  begin
+     if (q1==count)
+          begin
+              q1<=0;
+              start1 <= 0;
+              NS <= IDLE;
+              PS<= IDLE;
+              WREN <= 0;
+          end
+      else if( start1==1)
+          begin
+              q1<=q1+1;
+              NS <= STAT1;  
+          end
+          
+       else
+            q1<=q1;
+end
 
+  
  always@(posedge CLK)
   begin
-      if( start==1)
+      if (q2==count)
           begin
-              q=q+1;
-              NS = STAT2;
-              WREN = 1;
+              q2<=0;
+              start2 <= 0;
+              NS <= IDLE;
+              PS <= IDLE;
+              WREN <= 0;
           end
-      if (q==4)
+      else if( start2==1)
           begin
-              start = 0;
-              NS = IDLE;
-              WREN = 0;
-          end 
+              q2<=q2+1;
+              NS <= STAT2;
+              WREN <= 1;
+          end
+       else
+            q2<=q2; 
   end 
 endmodule
-
