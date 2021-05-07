@@ -33,11 +33,13 @@ module watchdog_top(
    wire [7:0] din,flstat8;
    wire [1:0] flstat,ain;
    wire fwlen,swlen,rst_lmt,wdsrvc,init;
-   wire fwovr,swstat,wdfail;
+   wire fwovr,swstat,wdfail,config_wren;
    
    assign flstat8={6'b000000,flstat};
    assign din = wdfail?flstat8:DBUS;
    assign ain = wdfail?2'b10:ABUS;
+   
+   assign config_wren= wren | wdfail;
    assign WDFAIL = wdfail;
    pattern_comparator I1(.DBUS(DBUS),.CLK(CLK),.RST(RST),.WREN(wren));
    configuration_register I2(.RST(RST),.CLK(CLK),.WREN(wren),.ABUS(ain),.DBUS(din),.FWLEN(fwlen),.SWLEN(swlen),.RST_LMT(rst_lmt),.WDSRVC(wdsrvc),.INIT(init),.FLSTAT(FLSTAT));
