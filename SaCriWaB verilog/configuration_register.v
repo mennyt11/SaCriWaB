@@ -35,7 +35,7 @@ module configuration_register(
     );
     
     reg [7:0] FWLEN_reg,SWLEN_reg,RST_LMT_reg;
-    reg [7:0] SERVICE_reg; // [7:4] unused,[3] INIT,[2] WDSRVC,[1:0] FLSTAT
+    reg [7:0] SERVICE_reg; // [7:4] unused,[4] INIT,[3] WDSRVC,[2:0] FLSTAT
     
     assign FWLEN = FWLEN_reg;
     assign SWLEN = SWLEN_reg;
@@ -67,7 +67,7 @@ module configuration_register(
         case(ABUS)
         2'b00: FWLEN_reg<= DBUS;
         2'b01: SWLEN_reg<= DBUS;
-        2'b10: SERVICE_reg<= SERVICE_reg | DBUS;
+        2'b10: SERVICE_reg<= DBUS;
         2'b11: RST_LMT_reg<=DBUS;
         endcase
         end
