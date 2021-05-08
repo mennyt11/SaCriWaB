@@ -30,7 +30,13 @@ module downcounter(
     
     always @ (posedge CLK)
     begin
-        if(q==RST_LMT)
+        if (WDFAIL==0)
+        begin
+            RSTOUT<=0;
+            q<=0;
+        end
+        
+        else if(q==RST_LMT)
         begin
            RSTOUT<=1; 
         end
@@ -42,8 +48,7 @@ module downcounter(
         
         else
         begin
-            RSTOUT<=0;
-            q<=0;
+            q<=q;
         end
     end
     
