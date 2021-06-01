@@ -35,6 +35,7 @@ begin
 	if(INIT==0)
 		begin
 		SWSTAT=0;
+		q=0;
 		end
 end
 
