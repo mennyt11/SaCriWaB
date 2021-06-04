@@ -35,14 +35,29 @@ module wd_fail_detector(
         FLSTAT=3'b100;
     end
     
-    always @(posedge FWOVR or posedge WDSRVC or negedge SWSTAT)
+    always @(posedge FWOVR or negedge SWSTAT)
     begin
         if(FWOVR==1)
         begin
             WDFAIL <=1;
             FLSTAT <= 3'b000;
         end 
-        else if(WDSRVC==1 && SWSTAT == 0)
+        
+        else if(SRVC_LMT==0)
+        begin
+            WDFAIL<=1;
+            FLSTAT<=3'b011;
+        end
+        else
+        begin
+            SRVC_LMT<=0;
+            WDFAIL<=0;
+        end
+    end    
+    
+    always @(posedge WDSRVC)
+    begin
+        if(WDSRVC==1 && SWSTAT == 0)
         begin
             WDFAIL <=1;
             FLSTAT <=3'b001;
@@ -59,16 +74,7 @@ module wd_fail_detector(
             WDFAIL<=1;
             FLSTAT<=3'b010;
         end
-        else if(SRVC_LMT==0)
-        begin
-            WDFAIL<=1;
-            FLSTAT<=3'b011;
-        end
-        else
-        begin
-            SRVC_LMT<=0;
-            WDFAIL<=0;
-        end
+        
     end
     
 endmodule
