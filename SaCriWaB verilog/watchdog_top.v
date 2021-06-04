@@ -27,15 +27,16 @@ module watchdog_top(
     input CLK,
     output RSTOUT,
     output WDFAIL,
-    output [1:0] FLSTAT
+    output [2:0] FLSTAT
     );
    wire wren;
    wire [15:0] din,flstat16;
-   wire [1:0] flstat,ain;
+   wire [1:0] ain;
+   wire [2:0] flstat;
    wire fwlen,swlen,rst_lmt,wdsrvc,init;
    wire fwovr,swstat,wdfail,config_wren;
    
-   assign flstat16={14'b000000,flstat};
+   assign flstat16={13'b000000,flstat};
    assign din = wdfail?flstat16:DBUS;
    assign ain = wdfail?2'b10:ABUS;
    
