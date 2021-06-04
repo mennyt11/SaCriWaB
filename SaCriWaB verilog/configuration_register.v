@@ -25,17 +25,17 @@ module configuration_register(
     input CLK,
     input WREN,
     input [1:0] ABUS,
-    input [7:0] DBUS,
-    output [7:0] FWLEN,
-    output [7:0] SWLEN,
-    output [7:0] RST_LMT,
+    input [15:0] DBUS,
+    output [15:0] FWLEN,
+    output [15:0] SWLEN,
+    output [15:0] RST_LMT,
     output WDSRVC,
     output INIT,
     output [1:0] FLSTAT
     );
     
-    reg [7:0] FWLEN_reg,SWLEN_reg,RST_LMT_reg;
-    reg [7:0] SERVICE_reg; // [7:4] unused,[3] INIT,[2] WDSRVC,[1:0] FLSTAT
+    reg [15:0] FWLEN_reg,SWLEN_reg,RST_LMT_reg;
+    reg [15:0] SERVICE_reg; // [15:4] unused,[3] INIT,[2] WDSRVC,[1:0] FLSTAT
     
     assign FWLEN = FWLEN_reg;
     assign SWLEN = SWLEN_reg;

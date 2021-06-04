@@ -21,10 +21,10 @@
 
 module frame_window(
 		input CLK, WDRST,WDSRVC,
-		input [7:0] FWLEN,
+		input [15:0] FWLEN,
 		output reg FWOVR);
 
-reg [7:0] q;
+reg [15:0] q;
 		 
 initial begin 
 FWOVR=0;

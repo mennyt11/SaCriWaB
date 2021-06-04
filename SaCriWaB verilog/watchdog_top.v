@@ -22,7 +22,7 @@
 
 module watchdog_top(
     input [1:0] ABUS,
-    input [7:0] DBUS,
+    input [15:0] DBUS,
     input RST,
     input CLK,
     output RSTOUT,
@@ -30,13 +30,13 @@ module watchdog_top(
     output [1:0] FLSTAT
     );
    wire wren;
-   wire [7:0] din,flstat8;
+   wire [15:0] din,flstat16;
    wire [1:0] flstat,ain;
    wire fwlen,swlen,rst_lmt,wdsrvc,init;
    wire fwovr,swstat,wdfail,config_wren;
    
-   assign flstat8={6'b000000,flstat};
-   assign din = wdfail?flstat8:DBUS;
+   assign flstat16={14'b000000,flstat};
+   assign din = wdfail?flstat16:DBUS;
    assign ain = wdfail?2'b10:ABUS;
    
    assign config_wren= wren | wdfail;

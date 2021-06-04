@@ -21,14 +21,14 @@
 
 
 module pattern_comparator(
- input [7:0] DBUS,
+ input [15:0] DBUS,
  input CLK,
  input RST,
  output reg WREN
  );
 
- parameter IDLE = 2'b00, STAT1 = 2'b01, STAT2 = 2'b10,count=8'h04;
- reg[7:0] q1,q2;
+ parameter IDLE = 2'b00, STAT1 = 2'b01, STAT2 = 2'b10,count=16'h0004;
+ reg[15:0] q1,q2;
  reg [1:0] PS, NS;
  reg start1,start2;
 
