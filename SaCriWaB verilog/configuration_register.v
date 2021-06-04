@@ -31,17 +31,17 @@ module configuration_register(
     output [15:0] RST_LMT,
     output WDSRVC,
     output INIT,
-    output [1:0] FLSTAT
+    output [2:0] FLSTAT
     );
     
     reg [15:0] FWLEN_reg,SWLEN_reg,RST_LMT_reg;
-    reg [15:0] SERVICE_reg; // [15:4] unused,[3] INIT,[2] WDSRVC,[1:0] FLSTAT
+    reg [15:0] SERVICE_reg; // [15:5] unused,[4] INIT,[3] WDSRVC,[2:0] FLSTAT
     
     assign FWLEN = FWLEN_reg;
     assign SWLEN = SWLEN_reg;
-    assign INIT = SERVICE_reg[3];
-    assign WDSRVC = SERVICE_reg[2];
-    assign FLSTAT = SERVICE_reg[1:0];
+    assign INIT = SERVICE_reg[4];
+    assign WDSRVC = SERVICE_reg[3];
+    assign FLSTAT = SERVICE_reg[2:0];
     assign RST_LMT = RST_LMT_reg;
     
     initial
