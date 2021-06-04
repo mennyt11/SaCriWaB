@@ -42,7 +42,7 @@ module watchdog_top(
    assign config_wren= wren | wdfail;
    assign WDFAIL = wdfail;
    pattern_comparator I1(.DBUS(DBUS),.CLK(CLK),.RST(RST),.WREN(wren));
-   configuration_register I2(.RST(RST),.CLK(CLK),.WREN(wren),.ABUS(ain),.DBUS(din),.FWLEN(fwlen),.SWLEN(swlen),.RST_LMT(rst_lmt),.WDSRVC(wdsrvc),.INIT(init),.FLSTAT(FLSTAT));
+   configuration_register I2(.RST(RST),.CLK(CLK),.WREN(config_wren),.ABUS(ain),.DBUS(din),.FWLEN(fwlen),.SWLEN(swlen),.RST_LMT(rst_lmt),.WDSRVC(wdsrvc),.INIT(init),.FLSTAT(FLSTAT));
    frame_window I3(.CLK(CLK), .WDRST(RST),.WDSRVC(wdsrvc),.FWLEN(fwlen),.FWOVR(fwovr));
    service_window I4(.CLK(CLK),.INIT(init),.SWLEN(swlen),.SWSTAT(swstat));
    wd_fail_detector I5(.SWSTAT(swstat), .WDSRVC(wdsrvc),.FWOVR(fwovr),.WDFAIL(wdfail),.FLSTAT(flstat));
