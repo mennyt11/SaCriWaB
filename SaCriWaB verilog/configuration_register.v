@@ -46,9 +46,9 @@ module configuration_register(
     
     initial
     begin
-    FWLEN_reg=0;
-    SWLEN_reg=0;
-    SERVICE_reg=0;
+    FWLEN_reg=16'h00FF;
+    SWLEN_reg=16'h000A;
+    SERVICE_reg=16'h0010;
     RST_LMT_reg=0;
     end
     
