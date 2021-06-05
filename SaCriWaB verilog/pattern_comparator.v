@@ -53,7 +53,7 @@ module pattern_comparator(
  begin
    case(PS)
    IDLE: begin
-            if( DBUS==8'hAA)
+            if( DBUS==16'hAAAA)
             begin
                 NS<= STAT1;
                 WREN <= 0;
@@ -68,7 +68,7 @@ module pattern_comparator(
          end
 
    STAT1: begin
-            if(DBUS == 8'h55)
+            if(DBUS == 16'h5555)
             begin
                 start1<=0;
                 q1<=0;

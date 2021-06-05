@@ -24,7 +24,7 @@ module pattern_comparator_tb();
 
 localparam T=20;
 
-reg [7:0] dbus;
+reg [15:0] dbus;
 reg clk,rst;
 wire wren;
 pattern_comparator DUT(.DBUS(dbus),.CLK(clk),.RST(rst),.WREN(wren));
@@ -45,56 +45,56 @@ end
 initial 
 begin
     @(negedge clk)
-    #5 dbus=8'h11;
+    #5 dbus=16'h1111;
     
     @(negedge clk)
-    #5 dbus=8'hAA;
-    
-    @(negedge clk)
-    @(negedge clk)
-    #5 dbus=8'h40;
+    #5 dbus=16'hAAAA;
     
     @(negedge clk)
     @(negedge clk)
-    #5 dbus=8'h33;
-    
-    @(negedge clk)
-    #5 dbus=8'h76;
-    
-    @(negedge clk)
-    #5 dbus=8'hAA;
+    #5 dbus=16'h0040;
     
     @(negedge clk)
     @(negedge clk)
-    @(negedge clk)
-    #5 dbus=8'h55;
+    #5 dbus=16'h0133;
     
     @(negedge clk)
-    #5 dbus=8'h35;
+    #5 dbus=16'h5576;
     
     @(negedge clk)
-    #5 dbus=8'h11;
+    #5 dbus=16'hAAAA;
     
     @(negedge clk)
-    #5 dbus=8'h13;
+    @(negedge clk)
+    @(negedge clk)
+    #5 dbus=16'h5555;
     
     @(negedge clk)
-    #5 dbus=8'h20;
+    #5 dbus=16'h2235;
     
     @(negedge clk)
-    #5 dbus=8'h28;
+    #5 dbus=16'h1111;
     
     @(negedge clk)
-    #5 dbus=8'hAB;
+    #5 dbus=16'hAB13;
     
     @(negedge clk)
-    #5 dbus=8'hBB;
+    #5 dbus=16'hAA20;
     
     @(negedge clk)
-    #5 dbus=8'h11;
+    #5 dbus=16'hFF28;
     
     @(negedge clk)
-    #5 dbus=8'h88;
+    #5 dbus=16'hABCD;
+    
+    @(negedge clk)
+    #5 dbus=16'hEEBB;
+    
+    @(negedge clk)
+    #5 dbus=16'h2211;
+    
+    @(negedge clk)
+    #5 dbus=16'h2188;
     
     $stop;
 end
