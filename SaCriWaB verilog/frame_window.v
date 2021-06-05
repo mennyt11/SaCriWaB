@@ -31,15 +31,6 @@ FWOVR=0;
 q=0;
 end
 
-always @ (posedge WDRST)
-begin
-	
-	if(WDSRVC==1)
-		begin
-		q<=0;
-		end
-end
-
 always @ (posedge CLK)
 begin
 	if(q==FWLEN)

@@ -25,31 +25,42 @@ module wd_fail_detector(
     input WDSRVC,
     input FWOVR,
     output reg WDFAIL,
-    output reg [1:0] FLSTAT
+    output reg [2:0] FLSTAT
     );
     
     reg SRVC_LMT=1;
     initial 
     begin
         WDFAIL=0;
-        FLSTAT=2'b00;
+        FLSTAT=3'b100;
     end
-    always @(posedge FWOVR)
+    
+    always @(posedge FWOVR or negedge SWSTAT)
     begin
         if(FWOVR==1)
         begin
             WDFAIL <=1;
-            FLSTAT <= 2'b00;
-        end
+            FLSTAT <= 3'b000;
+        end 
         
-    end
+        else if(SRVC_LMT==0)
+        begin
+            WDFAIL<=1;
+            FLSTAT<=3'b011;
+        end
+        else
+        begin
+            SRVC_LMT<=0;
+            WDFAIL<=0;
+        end
+    end    
     
     always @(posedge WDSRVC)
     begin
         if(WDSRVC==1 && SWSTAT == 0)
         begin
             WDFAIL <=1;
-            FLSTAT <=2'b01;
+            FLSTAT <=3'b001;
         end
         
         else if(WDSRVC==1 && SWSTAT ==1 && SRVC_LMT==0)
@@ -61,23 +72,9 @@ module wd_fail_detector(
         else if(WDSRVC ==1 && SWSTAT ==1 && SRVC_LMT==1)
         begin
             WDFAIL<=1;
-            FLSTAT<=2'b10;
-        end
-    end
-    
-    always @(negedge SWSTAT)
-    begin
-        if(SRVC_LMT==0)
-        begin
-            WDFAIL<=1;
-            FLSTAT<=2'b11;
+            FLSTAT<=3'b010;
         end
         
-        else
-        begin
-            SRVC_LMT<=0;
-            WDFAIL<=0;
-        end
     end
     
 endmodule
