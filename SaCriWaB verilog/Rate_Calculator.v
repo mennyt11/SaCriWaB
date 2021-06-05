@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 module Rate_Calculator(
     input clk,
-    input [7:0] in_bus,
+    input [7:0] in_bus, rate_limit,
     input BOD_in,
     output reg Brownout
     );
@@ -14,13 +14,13 @@ module Rate_Calculator(
         rate=14;
     end
     
-    always @(posedge clk)
+    always @(negedge clk)
     begin
         if (BOD_in == 1)
         begin
             vol2 = in_bus;
             rate = vol1 - vol2;
-            if ((vol1 > vol2) && (rate > 7))
+            if ((vol1 > vol2) && (rate > rate_limit))
                 Brownout = 1;
             else
                 Brownout = 0;
