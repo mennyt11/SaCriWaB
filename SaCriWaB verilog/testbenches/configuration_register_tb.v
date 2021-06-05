@@ -24,12 +24,12 @@ module configuration_register_tb();
 
 localparam T=20;
  
-reg [7:0] dbus;
+reg [15:0] dbus;
 reg [1:0] abus;
 reg clk,rst;
 wire wren;
 
-wire [7:0] swlen,fwlen,rst_lmt;
+wire [15:0] swlen,fwlen,rst_lmt;
 wire wdsrvc;
 wire init;
 wire [2:0] flstat;
@@ -55,63 +55,59 @@ end
 initial 
 begin
     @(negedge clk)
-    #5 dbus=8'h11;
+    #5 dbus=16'h1111;
     
     @(negedge clk)
-    #5 dbus=8'hAA;
-    
-    @(negedge clk)
-    @(negedge clk)
-    #5 dbus=8'h40;
+    #5 dbus=16'hAAAA;
     
     @(negedge clk)
     @(negedge clk)
-    #5 dbus=8'h33;
-    
-    @(negedge clk)
-    #5 dbus=8'h76;
-    
-    @(negedge clk)
-    #5 dbus=8'hAA;
+    #5 dbus=16'h0240;
     
     @(negedge clk)
     @(negedge clk)
-    @(negedge clk)
-    #5 dbus=8'h55;
+    #5 dbus=16'h3333;
     
     @(negedge clk)
-    #5 dbus=8'hA0;
+    #5 dbus=16'h4576;
+    
+    @(negedge clk)
+    #5 dbus=16'hAAAA;
+    
+    @(negedge clk)
+    @(negedge clk)
+    @(negedge clk)
+    #5 dbus=16'h5555;
+    
+    @(negedge clk)
+    #5 dbus=16'h0100;
     abus=2'b00;
     
     @(negedge clk)
-    #5 dbus=8'h0F;
+    #5 dbus=16'h000F;
        abus=2'b01;
            
     @(negedge clk)
-    #5 dbus=8'h08;
+    #5 dbus=16'h0000;
     abus=2'b10;
     
     @(negedge clk)
-    #5 dbus=8'h00;
+    #5 dbus=16'h0010;
     abus=2'b10;
     
     @(negedge clk)
-    #5 dbus=8'h10;
+    #5 dbus=16'h0018;
     abus=2'b10;
     
     @(negedge clk)
-    #5 dbus=8'h10;
+    #5 dbus=16'h0010;
     abus=2'b10;
     
     @(negedge clk)
-    #5 dbus=8'h00;
-    abus=2'b10;
+    #5 dbus=16'h0011;
     
     @(negedge clk)
-    #5 dbus=8'h11;
-    
-    @(negedge clk)
-    #5 dbus=8'h88;
+    #5 dbus=16'h1188;
     
     $stop;
 end

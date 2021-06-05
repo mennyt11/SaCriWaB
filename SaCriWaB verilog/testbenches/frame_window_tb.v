@@ -23,7 +23,7 @@ module framewindow_tb();
     localparam T=20;
     
     reg clk=0,wdrst=0,wdsrvc=0;
-    reg [7:0] fwlen;
+    reg [15:0] fwlen;
     wire fwovr;
 frame_window UUT(.CLK(clk),.WDRST(wdrst),.WDSRVC(wdsrvc),.FWLEN(fwlen),.FWOVR(fwovr));
 always begin
@@ -33,7 +33,7 @@ always begin
     #(T/2);
 end
 initial begin
-fwlen=8'h06;
+fwlen=16'h0006;
 wdsrvc=1'b0;
 end
 initial begin
