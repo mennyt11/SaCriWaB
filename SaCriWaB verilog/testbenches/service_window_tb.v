@@ -24,7 +24,7 @@ module service_window_tb();
 localparam T=20;
     
     reg clk=0,init=0;
-    reg [7:0] swlen;
+    reg [15:0] swlen;
     wire swstat;
 service_window UUT(.CLK(clk),.INIT(init),.SWLEN(swlen),.SWSTAT(swstat));
 always begin

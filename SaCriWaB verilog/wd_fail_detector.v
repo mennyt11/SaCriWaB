@@ -28,11 +28,11 @@ module wd_fail_detector(
     output reg [2:0] FLSTAT
     );
     
-    reg SRVC_LMT=1;
+    reg SRVC_LMT=0;
     initial 
     begin
         WDFAIL=0;
-        FLSTAT=3'b100;
+        FLSTAT=3'b111;
     end
     
     always @(posedge FWOVR or negedge SWSTAT)
