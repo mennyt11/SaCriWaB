@@ -23,10 +23,10 @@
 module downcounter(
     input WDFAIL,
     input CLK,
-    input [7:0] RST_LMT,
+    input [15:0] RST_LMT,
     output reg RSTOUT
     );
-    reg [7:0] q=0;
+    reg [15:0] q=0;
     
     always @ (posedge CLK)
     begin

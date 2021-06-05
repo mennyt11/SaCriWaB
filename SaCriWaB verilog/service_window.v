@@ -21,9 +21,9 @@
 
 module service_window(
 		input CLK,INIT,
-		input [7:0] SWLEN,
+		input [15:0] SWLEN,
 		output reg SWSTAT);
-reg [7:0] q;
+reg [15:0] q;
 		 
 initial begin 
 q=0;
