@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 module Rate_Calculator(
     input clk,
-    input [19:0] adc_in, rate_limit,
+    input [19:0] adc_in, 
+    input [11:0] rate_limit,
     input BOD_out1,BOD_out2,
     output reg Brownout
     );
