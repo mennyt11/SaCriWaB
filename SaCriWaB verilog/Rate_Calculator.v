@@ -6,7 +6,7 @@ module Rate_Calculator(
     input BOD_out1,BOD_out2,
     output reg Brownout
     );
-    reg [15:0] vol1,vol2,rate;
+    reg [19:0] vol1,vol2,rate;
     
     initial
     begin
