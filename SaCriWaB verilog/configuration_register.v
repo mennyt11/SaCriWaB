@@ -41,7 +41,7 @@ module configuration_register(
     reg [15:0] SERVICE_reg; // [15:5] unused,[4] INIT,[3] WDSRVC,[2:0] FLSTAT
     
     reg [15:0] BOD_reg0; //[15:4] BOD_rate_limit, [3:0] BOD_thresh1_MSB4
-    reg [19:0] BOD_reg1;// BOD_thresh1_LSB16
+    reg [15:0] BOD_reg1;// BOD_thresh1_LSB16
     reg [15:0] BOD_reg2; //{15:4] unused, [3:0] BOD_thresh2_MSB4
     reg [15:0] BOD_reg3; //BOD_thresh2_LSB16
     
