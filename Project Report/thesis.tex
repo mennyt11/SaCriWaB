@@ -1,4 +1,3 @@
-
 \documentclass[10pt]{report}
 \usepackage{csquotes}
 \usepackage{titlesec}
@@ -274,17 +273,63 @@ implimentation of your project
 
 \chapter{Results and Analysis}
 
-Your results
+The following are the results of the project:
+\begin{itemize}
+    \item Individual modules of watchdog timer was designed in verilog and its functions were verified using testbench.
+    \item Individual modules of burnout detector was designed in verilog and its functions were verified using testbench.
+    \item Watchdog timer and burnout detector were integrated together in a top module with a common configuration register storing the values of constants.
+    \item The functionality of the top module was verified using testbench.
+    
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{pattern_comparator.png}
+\caption{Pattern comparator waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{configuration_register.png}
+\caption{configuration register waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{service_window.png}
+\caption{service window waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{frame_window.png}
+\caption{frame window waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{wd_fail_detector.png}
+\caption{watchdog fail detector waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{down_counter.png}
+\caption{down counter waveform}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{Brownout_output.JPG}
+\caption{brownout detector waveform}
+\end{figure}
+
 
 \newpage
 \chapter{Conclusion}
 Your Conclusion 
 \newpage
-\bibliographystyle{IEEEtran}
-\bibliography{ref.bib}
-\nocite{*}
+\begin{thebibliography}{999}
+\addcontentsline{toc}{chapter}{REFERENCES}
+
+\bibitem{} Watchdog timer IP core, Lattice Semiconductor, June 2020
+\bibitem{} Unni, Ravi Krishnan, P. Vijayanand, and Y. Dilip. "FPGA Implementation of an Improved Watchdog Timer for Safety-critical Applications." 2018 31st International Conference on VLSI Design and 2018 17th International Conference on Embedded Systems (VLSID). IEEE, 2018.
+
+\bibitem{} Straka, Bartholomew. "Implementing a microcontroller watchdog with a field-programmable gate array (FPGA)." (2013).
+\bibitem{} Amer, Hassanein, and Ahmed Sobeih. "Increasing the Reliability of the Motorola MC68HC11 in the Presence of Temporary Failures." 11th IEEE Mediterranean Electrotechnical Conference (IEEE Cat. No. 02CH37379). IEEE, 2002.
+
+\end{thebibliography}
 \end{document}
-
-
-
-
