@@ -30,7 +30,7 @@ reg clk, rst;
 wire rstout;
 wire WDFAIL;
 wire [2:0] FLSTAT;
-wire BROWNOUT;
+wire brownout;
 
 watchdog_top DUT1( .ABUS(abus), .DBUS(dbus),.ADC_IN(adc_in), .RST(rst), .CLK(clk), .RSTOUT(rstout), .WDFAIL(WDFAIL), .FLSTAT(FLSTAT), .BROWNOUT(brownout));
  initial
