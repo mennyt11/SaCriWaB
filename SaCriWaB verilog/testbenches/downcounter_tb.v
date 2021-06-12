@@ -24,7 +24,7 @@ module downcounter_tb();
 localparam T=20;
 
 reg clk,wdfail;
-reg [7:0] rst_lmt;
+reg [15:0] rst_lmt;
 wire rstout;
 
 downcounter DUT(.WDFAIL(wdfail),.CLK(clk),.RST_LMT(rst_lmt),.RSTOUT(rstout));
